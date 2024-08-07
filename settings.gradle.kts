@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "ComposePractice"
 include(":app")
 include(":text")
+include(":button")

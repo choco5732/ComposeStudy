@@ -23,3 +23,4 @@ rootProject.name = "ComposePractice"
 include(":app")
 include(":text")
 include(":button")
+include(":modifier")

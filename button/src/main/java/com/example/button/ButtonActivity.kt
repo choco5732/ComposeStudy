@@ -145,6 +145,7 @@ fun ButtonExample(onButtonClicked: () -> Unit) {
         Spacer(
             modifier = Modifier.size(ButtonDefaults.IconSpacing)
         )
+
         Text(text = "hi")
     }
 }

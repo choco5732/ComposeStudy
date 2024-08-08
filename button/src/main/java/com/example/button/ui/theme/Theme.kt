@@ -1,4 +1,4 @@
-package com.erionna.button.ui.theme
+package com.example.button.ui.theme
 
 import android.app.Activity
 import android.os.Build

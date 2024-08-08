@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.erionna.button"
+    namespace = "com.example.button"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.erionna.button"
+        applicationId = "com.example.button"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

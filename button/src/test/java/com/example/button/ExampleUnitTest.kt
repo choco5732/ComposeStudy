@@ -1,4 +1,4 @@
-package com.erionna.button
+package com.example.button
 
 import org.junit.Test
 

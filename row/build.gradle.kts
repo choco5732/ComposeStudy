@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.row"
+    namespace = "com.erionna.row"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.row"
+        applicationId = "com.erionna.row"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

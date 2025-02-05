@@ -3,48 +3,39 @@ package com.example.box
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.box.ui.theme.ComposePracticeTheme
+import com.example.box.ui.theme.BoxTheme
 
 /**
- * Box : FrameLayout 과 같이 중첩시키는 용도로 사용
+ * Box : 기존 FrameLayout와 같이 중첩시키는 용도로 사용되는 레이아웃
  */
 class BoxActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposePracticeTheme {
                 BoxExample()
-            }
         }
     }
 }
 
 @Composable
 fun BoxExample() {
-//    Box(
-//        modifier = Modifier.size(300.dp)
-//    ) {
-//        Text(
-//            text = "박스 테스트!!",
-//            modifier = Modifier.align(
-//                Alignment.BottomEnd)
-//            )
-//    }
+    Box(
+        modifier = Modifier.size(100.dp)
+    ) {
+        Text(
+            text = "Hello World",
+            modifier = Modifier.align(Alignment.Center)
+        )
+    }
+
 
     // 스텝 1 : Text 두 개를 Box 안에 배치하라
 //    Box(
@@ -82,16 +73,14 @@ fun BoxExample() {
 //        )
 //    }
     // 스텝 3 : 부모 Box에 modifier 설정을 제거해서, 콘텐트 사이즈만큼 보여라.
-    Box {
-        Box(modifier = Modifier.fillMaxSize().background(Color.Cyan).align(Alignment.CenterStart))
-        Box(modifier = Modifier.size(80.dp).background(Color.DarkGray).align(Alignment.Center))
-    }
+//    Box {
+//        Box(modifier = Modifier.fillMaxSize().background(Color.Cyan).align(Alignment.CenterStart))
+//        Box(modifier = Modifier.size(80.dp).background(Color.DarkGray).align(Alignment.Center))
+//    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BoxExamplePreview() {
-    ComposePracticeTheme {
         BoxExample()
-    }
 }

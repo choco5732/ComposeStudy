@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.surface"
+    namespace = "com.erionna.myapplication"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.surface"
+        applicationId = "com.erionna.myapplication"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -66,5 +66,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(libs.androidx.material)
 }

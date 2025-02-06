@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -37,7 +39,7 @@ fun RowEx() {
 //    Row(modifier = Modifier.height(40.dp)){
 //        // width를 설정해주지 않으면 wrapContent로 이해
 //        Text(text = "첫 번째!")
-//        Text(text = "두 번째!")
+//        Te xt(text = "두 번째!")
 //        Text(text = "세 번째!")
 //    }
 
@@ -61,15 +63,26 @@ fun RowEx() {
 //    }
 
     // 스텝 3 : Row의 width를 20dp로 설정하자
+//    Row(
+//        modifier = Modifier
+//            .width(300.dp)
+//            .height(40.dp),
+//        verticalAlignment = Alignment.CenterVertically,
+//        horizontalArrangement = Arrangement.SpaceAround // Arrangement는 Row가 가는 방향으로 (수평)으로 간다.
+//    ) {
+//        Text(text = "첫 번째!", modifier = Modifier.align(Alignment.Bottom)) // Row의 align은 진행방향의 수직인 세로로 할 수 있다.
+//        Text(text = "두 번째!")
+//        Text(text = "세 번째!")
+//    }
+
+    // 스텝 4 : 각 텍스트의 weight를 설정해보자.
     Row(
-        modifier = Modifier
-            .width(200.dp)
-            .height(40.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(text = "첫 번째!", modifier = Modifier.align(Alignment.Bottom)) // Row의 align은 진행방향의 수직인 세로로 할 수 있다.
-        Text(text = "두 번째!")
-        Text(text = "세 번째!")
+        modifier = Modifier.width(500.dp),
+        horizontalArrangement = Arrangement.SpaceAround
+    ){
+        Text(text = "안녕하세요")
+        Text(text = "반갑습니다")
+        Text(text = "안녕히가세요")
     }
 }
 

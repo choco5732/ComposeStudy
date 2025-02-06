@@ -1,6 +1,7 @@
 package com.example.button
 
 import android.content.Context
+import android.graphics.Paint.Align
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -16,6 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -25,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,23 +51,28 @@ class ButtonActivity : ComponentActivity() {
 
 @Composable
 fun ButtonExample(onButtonClicked: () -> Unit) {
-//    Button(onClick = {}) {
+//    Button(onClick = onButtonClicked) {
 //        Text(text = "Send!") // 안에 여러개의 위젯 넣을 수 있음
 //    }
 
     // 스텝 1 : Button을 클릭했을 때 Toast를 출력하라
 //    Button(onClick = onButtonClicked) {
-//        Text(text = "hi")
+//        Text(text = "Add")
 //    }
     // 스텝 2 : Icon을 Text 앞 에 추가하라.
     // ImageVector에는 Icons.FilledSend를 넣고,
     // contentDescription에는 null을 넣어보자.
-//    Button(onButtonClicked) {
+//    Button(
+//        onClick = onButtonClicked
+//    ) {
 //        Icon(
-//            imageVector = Icons.Filled.AccountBox,
-//            contentDescription = null
+//            imageVector = Icons.Filled.Favorite,
+//            contentDescription = "사랑"
 //        )
-//        Text(text = "Account")
+//        Spacer(
+//            modifier = Modifier.size(10.dp)
+//        )
+//        Text(text = "사랑")
 //    }
 
     // 스텝 3 : 아이콘과 텍스트 사이에 Spacer를 넣어보자.
@@ -82,10 +90,9 @@ fun ButtonExample(onButtonClicked: () -> Unit) {
 //    }
     // 스텝 4 : enabled를 false로 바꿔보자.
 //    Button(
-//            onClick = onButtonClicked,
-//    enabled = false
+//        onClick = onButtonClicked,
+//        enabled = false
 //    ) {
-//
 //        Icon(
 //            imageVector = Icons.Filled.Build,
 //            contentDescription = "사랑"
@@ -94,22 +101,22 @@ fun ButtonExample(onButtonClicked: () -> Unit) {
 //            modifier = Modifier.size(ButtonDefaults.IconSpacing)
 //        )
 //        Text(text = "hi")
-//
 //    }
     // 스텝 5 : border에 BorderStroke를 설정하자.
+    // 버튼의 가장자리 설정
 //    Button(
 //        onClick = onButtonClicked,
 //        enabled = true,
-//        border = BorderStroke(width = 5.dp, Color.Magenta)
+//        border = BorderStroke(width = ButtonDefaults.IconSpacing, color = Color.Magenta)
 //    ) {
 //        Icon(
-//            imageVector = Icons.Filled.Build,
-//            contentDescription = "사랑"
+//            imageVector = Icons.Filled.Add,
+//            contentDescription = "추가"
 //        )
 //        Spacer(
 //            modifier = Modifier.size(ButtonDefaults.IconSpacing)
 //        )
-//        Text(text = "hi")
+//        Text(text = "추가")
 //    }
 
     // 스텝 6 : shape를 CircleShape로 지정하자.
@@ -117,15 +124,15 @@ fun ButtonExample(onButtonClicked: () -> Unit) {
 //        onClick = onButtonClicked,
 //        enabled = true,
 //        border = BorderStroke(width = 5.dp, Color.Magenta),
-//        shape = CircleShape
+////        shape = CircleShape(10.dp)
+//        shape = RoundedCornerShape(10.dp)
 //    ) {
 //        Icon(
 //            imageVector = Icons.Filled.Build,
 //            contentDescription = "사랑"
 //        )
 //        Spacer(
-//            modifier = Modifier.size(ButtonDefaults.Ic
-    //            onSpacing)
+//            modifier = Modifier.size(ButtonDefaults.IconSpacing)
 //        )
 //        Text(text = "hi")
 //    }

@@ -1,4 +1,4 @@
-package com.erionna.column
+package kr.co.uxn.column
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.erionna.myapplication.ui.theme
+package kr.co.uxn.column.ui.theme
 
 import android.app.Activity
 import android.os.Build

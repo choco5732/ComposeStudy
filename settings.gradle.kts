@@ -19,6 +19,8 @@ dependencyResolutionManagement {
     }
 }
 
+
+
 rootProject.name = "ComposePractice"
 include(":app")
 include(":text")
@@ -27,3 +29,4 @@ include(":modifier")
 include(":surface")
 include(":box")
 include(":row")
+include(":column")

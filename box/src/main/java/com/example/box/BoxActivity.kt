@@ -70,6 +70,8 @@ fun BoxExample() {
 //
 //    }
     // 스텝 3 : 부모 Box에 modifier 설정을 제거해서, 콘텐트 사이즈만큼 보여라.
+    // matchParentSize()를 하면 부모의 크기만큼 설정하는 것인데 부모에 설정된게 없으면 다른 자식들의 크기를 보고 결정한다.
+    // fillMaxSize()를 하면 최대 크기 즉 전체화면으로 설정된다.
     Box {
         Box(modifier = Modifier.fillMaxSize().background(Color.Red).align(Alignment.CenterStart))
         Box(modifier = Modifier.size(70.dp).background(Color.Yellow).align(Alignment.BottomEnd))

@@ -1,5 +1,11 @@
 package com.erionna.topappbar.ui.theme
 
+import Pink40
+import Pink80
+import Purple40
+import Purple80
+import PurpleGrey40
+import PurpleGrey80
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

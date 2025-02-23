@@ -29,6 +29,9 @@ import com.erionna.catalog.ui.theme.ComposePracticeTheme
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Surface
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 
 
 class MainActivity : ComponentActivity() {

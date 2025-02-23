@@ -91,18 +91,21 @@ fun CheckBoxEx() {
 //        )
 
         // 스텝 5: destruction으로 상태를 받아서 사용해보자.
-        val (checked, setChecked) = remember { mutableStateOf(false) }
+        // getter, setter
+        val (getChecked, setChecked) = remember { mutableStateOf(false) }
         Checkbox(
-            checked = checked, // false값이 바뀌지 않으면 눌러도 반응이 없다.
+            checked = getChecked, // false값이 바뀌지 않으면 눌러도 반응이 없다.
             onCheckedChange = {
+                setChecked(!getChecked)
                 setChecked(it)
             }
 //            onCheckedChange = setChecked
         )
+        // 아래와 같이 설정하면, 텍스트를 눌렀을때도, 체크박스를 눌렀을때와 동일한 효과가 나타남.
         Text(
             text = "반갑읍니다",
             modifier = Modifier.clickable {
-                setChecked(!checked)
+                setChecked(!getChecked)
             }
         )
     }

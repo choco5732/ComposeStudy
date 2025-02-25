@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -50,6 +52,26 @@ fun DropDownMenuEx() {
     // 단계 1: `DropdownMenu`를 만들고 `expanded`를 `expandDropDownMenu`로
     // 등록합시다.
     // `onDismissRequest`에 대해서는 `expandDropDownMenu`를 `false`로 바꿉니다.
+    DropdownMenu(
+        expanded = expandDropDownMenu,
+        onDismissRequest = {
+            expandDropDownMenu = false
+        }
+    ) {
+        DropdownMenuItem(onClick = {
+            counter++
+            expandDropDownMenu = false
+        }) {
+            Text("증가")
+        }
+
+        DropdownMenuItem(onClick = {
+            counter--
+            expandDropDownMenu = false
+        }) {
+            Text("감소")
+        }
+    }
 
     // 단계 2: 두개의 `DropdownMenuItem`을 등록합시다. `onClick`을 구현하고
     // 내용물은 `Text`로 채워봅시다.

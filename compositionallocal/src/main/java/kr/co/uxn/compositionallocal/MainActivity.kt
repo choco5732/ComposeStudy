@@ -1,0 +1,97 @@
+package kr.co.uxn.compositionallocal
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import kr.co.uxn.compositionallocal.ui.theme.ComposePracticeTheme
+
+
+// 가능하면 parameter로 전달하는게 더 좋은 방법이다.
+// compositionLocal은 암시적인 방식이라 예상하기가 어렵다.
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            ComposePracticeTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Greeting()
+                }
+            }
+        }
+    }
+}
+
+// 단계 4: `compositionLocalOf`에 `8.dp`를 넣어 `LocalElevation`을 할당합니다.
+
+@Composable
+fun Greeting() {
+    // CompositionLocal : 암시적인 데이터, 명시적으로 파라미터 없이도 데이터를 넘겨줄 수 있다.
+    // 단계 1: `CompositionLocalProvider`을 이용하면 특정 블록에 암시적인 값을 설정할 수 있습니다.
+    // `CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.disabled)`
+    // 등을 설정해봅시다.
+    // `LocalContentAlpha`를 `ContentAlpha.disabled`로 설정하겠다는 뜻입니다.
+    // `ContentAlpha.medium`, `ContentAlpha.high`, `ContentAlpha.disabled`등을
+    // 제공할 수 있습니다.
+    // `LocalContentColor`도 설정해봅시다. `Color.XXX`을 설정하면 됩니다.
+
+    // 단계 2: 중간 중간에 `LocalContentColor.current` 등의 값을 출력해봅시다.
+    // 가장 가까운 곳에서 설정한 값을 `current`로 얻을 수 있습니다.
+
+    // 단계 5: Card의 elevation에 `LocalElevation`을 적용해봅시다.
+
+    // 단계 6: LocalElevation의 값을 `CompositionLocalProvider`로
+    // 바꾸어 봅시다.
+    Card(
+        modifier = Modifier.padding(8.dp)
+    ) {
+
+        // M3에서는 CompositionLocalProvider가 제공되지않는다.
+//        CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.disabled) {
+
+            Column(
+                modifier = Modifier.padding(16.dp),
+            ) {
+                Text("안녕하세요. 패스트캠퍼스")
+                Text("스안녕하세요. 패스트캠퍼")
+                Text("퍼스안녕하세요. 패스트캠")
+                Text("캠퍼스안녕하세요. 패스트")
+                Text("트캠퍼스안녕하세요. 패스")
+                Text("스트캠퍼스안녕하세요. 패")
+                Text("패스트캠퍼스안녕하세요.")
+                // 단계 3: `LocalContext.current`의 `resources`를 출력해보세요.
+                Button(onClick = { /*TODO*/ }) {
+
+                }
+            }
+//        }
+
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        Greeting()
+    }
+}

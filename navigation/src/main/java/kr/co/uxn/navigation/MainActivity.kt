@@ -1,0 +1,189 @@
+package kr.co.uxn.navigation
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import kr.co.uxn.navigation.ui.theme.ComposePracticeTheme
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        enableEdgeToEdge()
+        setContent {
+            ComposePracticeTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                 ) {
+                    MyNav()
+                }
+            }
+        }
+    }
+}
+// popUpTo("Home") : 스택에서 특정 경로(Home)를 제외하고 스택에서 모두 제거한다.
+// Home -> Office -> Playground : Home
+// Home -> Office -> Playground -> Home : Home -> Home
+
+// inclusive = true : 해당 경로만 제거한다.
+// Home -> office -> playground : office -> playgound
+// office -> playground -> home -> office : office -> palyground -> office
+// inclusive는 로그인할 때 주로 쓰인다.
+// Home -> Login -> Main 일때,
+// popUpTo("Login") { inclusive = true } 이면, Home -> Main만 스택에 남게된다. 로그인을 스택에서 지울 수 있다.
+
+// launchSingleTop = true
+// 최상단에 존재하면, 띄우지 않는다.
+// Home -> Home : Home
+
+// 단계 2: `navController` 파라미터를 만듭니다.
+// `NavHostController` 타입에 기본 값은 `rememberNavController()`
+@Composable
+fun MyNav(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController() // 기본값을 써주면, 파라미터로 값을 안줘도 자동으로 할당됨
+) {
+    // 단계 3: `NavHost`를 만듭니다.
+    // `navController`, `"Home"`, `modifier`를 전달합시다.
+    NavHost(navController, "Home", modifier = modifier) {
+        composable("Home") {
+            Column(
+            ) {
+                Text("여기는 홈")
+                Button(onClick={
+                    navController.navigate("Office") {
+                        popUpTo("Home") {
+                            inclusive = true
+                        }
+                    }
+                }) {
+                    Text("Office로 이동")
+                }
+                Button(onClick={
+                    navController.navigate("Playground") {
+                        popUpTo("Home")
+                    }
+                }) {
+                    Text("Playground로 이동")
+                }
+                Button(onClick={
+                    navController.navigate("Home") {
+                        launchSingleTop = true
+                    }
+                }) {
+                    Text("Home으로 이동")
+                }
+                Button(onClick={
+                    navController.navigate("Argument/fastcampus") {
+                        launchSingleTop = true
+                    }
+                }) {
+                    Text("fastcampus 아이디로 연결")
+                }
+            }
+        }
+        composable("Office") {
+            Column {
+                Text("여기는 오피스")
+                Button(onClick={
+                    navController.navigate("Home") {
+                        popUpTo("Home") {
+                            inclusive = true
+                        }
+                    }
+                }) {
+                    Text("Home으로 이동")
+                }
+                Button(onClick={
+                    navController.navigate("Playground") {
+                        popUpTo("Home") {
+                            inclusive = true
+                        }
+                    }
+                }) {
+                    Text("Playground로 이동")
+                }
+            }
+        }
+        composable("Playground") {
+            Column {
+                Text("여기는 플레이그라운드")
+                Button(onClick={
+                    navController.navigate("Home") {
+                        popUpTo("Home") {
+                            inclusive = true
+                        }
+                    }
+                }) {
+                    Text("Home으로 이동")
+                }
+                Button(onClick={
+                    navController.navigate("Office") {
+                        popUpTo("Home") {
+                            inclusive = true
+                        }
+                    }
+                }) {
+                    Text("Office로 이동")
+                }
+            }
+        }
+
+        composable("Argument/{userId}") { backStackEntry ->
+            val userId = backStackEntry.arguments?.get("userId")
+            Text("userID는 $userId")
+        }
+    }
+    // 단계 4: `composable("Home")`를 만들고 안에 "Office로 이동" 버튼을
+    // 만듭니다.
+
+    // 단계 5: `composable("Office")`를 만들고 텍스트를 넣어봅시다.
+    // "Office로 이동" 버튼에 `navController.navigate("Office")`를
+    // 넣어줍니다.
+
+    // 단계 6: `Playground`를 만들고 `Home`, `Office`, `Playgorund`를
+    // 서로 연결합니다.
+
+    // 단계 7: Home, Office, Playgorund, Home, Office, Playgorund
+    // 순으로 이동한 후 백버튼을 계속 눌러서 이동을 확인해봅시다.
+
+    // 단계 8: navigate에 후행 람다로 `popUpTo("Home")`을 넣고 스택 이동을
+    // 확인해봅니다.
+
+    // 단계 9: `popUpTo`의 후행 람다에 `inclusive = true`를 넣어보고
+    // 스택 이동을 확인해봅시다.
+
+    // 단계 10: `Home`에서 `Home`으로 가는 버튼을 만들고
+    // `launchSingleTop = true`을 설정해보세요.
+
+    // 단계 11: "Argument/{userId}"를 라우트로 받는
+    // composable을 만드세요.
+    // `arguments?.get("userId")`을 받아 출력하세요.
+    // "Argument/fastcampus"로 이동하는 버튼을 만들어보세요.
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ComposePracticeTheme {
+        MyNav()
+    }
+}

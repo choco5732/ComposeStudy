@@ -2,14 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "kr.co.uxn.viewmodel"
+    namespace = "kr.co.uxn.di"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "kr.co.uxn.viewmodel"
+        applicationId = "kr.co.uxn.di"
         minSdk = 29
         targetSdk = 35
         versionCode = 1
@@ -39,8 +41,11 @@ android {
     }
 }
 
-dependencies {
+kapt {
+    correctErrorTypes = true
+}
 
+dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -57,6 +62,23 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // 뷰모델 || 버전은 컴포즈 뷰모델과 동일하지 않다.
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // okhttp3
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    // GSON
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // viewModelScope
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
+    // viewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 }
